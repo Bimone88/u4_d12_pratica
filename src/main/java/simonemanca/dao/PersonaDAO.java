@@ -1,38 +1,39 @@
 package simonemanca.dao;
 
 import jakarta.persistence.EntityManager;
-import simonemanca.model.Evento;
+import simonemanca.model.Persona;
 
-public class EventoDAO {
+public class PersonaDAO {
     private EntityManager em;
 
-    public EventoDAO(EntityManager em) {
+    public PersonaDAO(EntityManager em) {
         this.em = em;
     }
 
-    public void save(Evento evento) {
+    public void save(Persona persona) {
         em.getTransaction().begin();
-        em.persist(evento);
+        em.persist(persona);
         em.getTransaction().commit();
     }
 
-    public Evento findById(Long id) {
-        return em.find(Evento.class, id);
+    public Persona findById(Long id) {
+        return em.find(Persona.class, id);
     }
 
-    public void update(Evento evento) {
+    public void update(Persona persona) {
         em.getTransaction().begin();
-        em.merge(evento);
+        em.merge(persona);
         em.getTransaction().commit();
     }
 
     public void delete(Long id) {
-        Evento evento = findById(id);
-        if (evento != null) {
+        Persona persona = findById(id);
+        if (persona != null) {
             em.getTransaction().begin();
-            em.remove(evento);
+            em.remove(persona);
             em.getTransaction().commit();
         }
     }
 }
+
 
